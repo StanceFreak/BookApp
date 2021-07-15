@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">f</string>
+    <string name="quote_name">- Jim Rohn</string>
+    <string name="quotes">If you don’t like to read, you haven’t found the right book.</string>
+    <string name="signin"><u>Sign In</u></string>
+</resources>
