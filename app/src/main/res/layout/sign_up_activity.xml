@@ -40,8 +40,7 @@
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
             app:boxBackgroundColor="@color/white"
-            app:startIconDrawable="@drawable/ic_avatar"
-            app:boxCornerRadiusBottomEnd="5dp">
+            app:startIconDrawable="@drawable/ic_avatar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -62,8 +61,7 @@
             app:boxBackgroundColor="@color/white"
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
-            app:startIconDrawable="@drawable/ic_email"
-            android:hint="Email">
+            app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -85,7 +83,8 @@
             app:hintEnabled="false"
             app:endIconMode="password_toggle"
             app:startIconDrawable="@drawable/ic_lock"
-            app:boxBackgroundColor="@color/white">
+            app:boxBackgroundColor="@color/white"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:inputType="textPassword"
@@ -131,7 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Terms of Use"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:fontFamily="@font/epilogue_semibold_600"
             android:layout_gravity="center"/>
@@ -141,17 +140,17 @@
             android:layout_height="wrap_content"
             android:text="and"
             android:textColor="@color/white"
-            android:layout_marginRight="7dp"
-            android:layout_marginLeft="7dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:textSize="16sp"
-            android:fontFamily="@font/epilogue_semibold_600"
+            android:fontFamily="@font/epilogue_regular_400"
             android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Privacy Policy"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16dp"
             android:fontFamily="@font/epilogue_semibold_600"
             android:layout_gravity="center"/>
