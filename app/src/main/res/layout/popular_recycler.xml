@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginEnd="10dp"
-    android:layout_marginStart="10dp">
+    android:id="@+id/rv_body">
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
@@ -22,7 +22,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="150dp"
-                android:src="@drawable/book"/>
+                android:src="@drawable/ic_book_icon"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
