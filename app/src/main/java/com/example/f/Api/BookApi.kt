@@ -9,5 +9,5 @@ import retrofit2.http.GET
 interface BookApi {
 
     @GET("/books/v1/volumes?q=novel")
-    fun getBooks(): Call<List<Books>>
+    fun getBooks(): Call<Books>
 }

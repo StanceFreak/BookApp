@@ -54,18 +54,18 @@ class HomeFragment : Fragment() {
 
     private fun getDataApi() {
         BookClient.instance.getBooks()
-                .enqueue(object : Callback<List<Books>> {
-                    override fun onResponse(call: Call<List<Books>>, response: Response<List<Books>>) {
-                        if (response.isSuccessful) {
-                            val result = response.body()
+                .enqueue(object : Callback<Books> {
+                    override fun onResponse(call: Call<Books>, response: Response<Books>) {
+                        val result = response.body()
                             showMsg(result.toString())
-                        }
                     }
 
-                    override fun onFailure(call: Call<List<Books>>, t: Throwable) {
-                        showMsg(t.toString())
+                    override fun onFailure(call: Call<Books>, t: Throwable) {
+                        TODO("Not yet implemented")
                     }
-
+//                    override fun onFailure(call: Call<Books>, t: Throwable) {
+//                        showMsg(t.toString())
+//                    }
                 })
     }
 
