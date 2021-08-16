@@ -9,8 +9,8 @@ data class BookItem(
         val authors: List<String>,
         @SerializedName("pageCount")
         val pageCount: Int,
-        @SerializedName("imageLinks")
-        val imageLinks: ImageLinks,
+        @SerializedName("thumbnail")
+        val thumbnail: ImageLinks,
         @SerializedName("averageRating")
         val averageRating: Double,
         @SerializedName("ratingsCount")

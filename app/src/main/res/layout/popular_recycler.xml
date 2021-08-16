@@ -20,6 +20,7 @@
             android:padding="15dp">
 
             <ImageView
+                android:id="@+id/popular_thumbnail"
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:src="@drawable/ic_book_icon"/>
@@ -31,6 +32,7 @@
                 android:layout_marginStart="10dp">
 
                 <TextView
+                    android:id="@+id/popular_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/book_title"
@@ -39,6 +41,7 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:id="@+id/popular_author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -47,6 +50,7 @@
                     android:fontFamily="@font/epilogue_regular_400"/>
 
                 <RatingBar
+                    android:id="@+id/popular_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -56,6 +60,7 @@
                     android:progressTint="@color/grey"/>
 
                 <TextView
+                    android:id="@+id/popular_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"

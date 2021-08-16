@@ -11,4 +11,9 @@
     <string name="popular_text">Popular now</string>
     <string name="for_you_text">Just for you</string>
     <string name="view_all_text">View all</string>
+    <string name="user_name">User</string>
+    <string name="user_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</string>
+    <string name="profile_edit">Manage your profile</string>
+    <string name="profile_education">Education</string>
+    <string name="profile_email">Email</string>
 </resources>

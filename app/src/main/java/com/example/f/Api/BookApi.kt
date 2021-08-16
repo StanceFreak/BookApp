@@ -10,4 +10,7 @@ interface BookApi {
 
     @GET("/books/v1/volumes?q=novel")
     fun getBooks(): Call<Books>
+
+    @GET("/books/v1/volumes?q=novel")
+    fun getBookItem(): Call<BookItem>
 }
