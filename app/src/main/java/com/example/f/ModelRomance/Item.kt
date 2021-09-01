@@ -1,4 +1,4 @@
-package com.example.f.Model
+package com.example.f.ModelRomance
 
 
 import com.google.gson.annotations.SerializedName
@@ -17,7 +17,5 @@ data class Item(
     @SerializedName("saleInfo")
     val saleInfo: SaleInfo,
     @SerializedName("accessInfo")
-    val accessInfo: AccessInfo,
-    @SerializedName("searchInfo")
-    val searchInfo: SearchInfo
+    val accessInfo: AccessInfo
 )

@@ -49,21 +49,52 @@
                     android:textSize="12sp"
                     android:fontFamily="@font/epilogue_regular_400"/>
 
-                <RatingBar
-                    android:id="@+id/popular_rating"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:numStars="5"
-                    android:stepSize="1"
-                    android:progressTint="@color/grey"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <RatingBar
+                        android:id="@+id/popular_rating_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="2dp"
+                        android:layout_gravity="center"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:numStars="5"
+                        android:stepSize="1"
+                        android:progressTint="@color/grey"/>
+
+                    <TextView
+                        android:id="@+id/popular_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="2dp"
+                        android:text="@string/book_rate"
+                        android:fontFamily="@font/epilogue_regular_400"
+                        android:textSize="13sp"/>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/popular_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@string/book_desc"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/epilogue_regular_400"/>
 
                 <TextView
                     android:id="@+id/popular_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/book_price"
                     android:fontFamily="@font/epilogue_semibold_600"
                     android:textColor="@color/black"

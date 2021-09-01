@@ -6,9 +6,11 @@
     <string name="signup"><u>Sign Up</u></string>
     <string name="book_title">title</string>
     <string name="book_author">author</string>
+    <string name="book_rate">0</string>
+    <string name="book_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</string>
     <string name="book_price">Rp 0</string>
     <string name="welcome_text">Hello user</string>
-    <string name="popular_text">Popular now</string>
+    <string name="popular_text">Romance</string>
     <string name="for_you_text">Just for you</string>
     <string name="view_all_text">View all</string>
     <string name="user_name">User</string>

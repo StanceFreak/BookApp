@@ -1,9 +1,9 @@
-package com.example.f.Model
+package com.example.f.ModelRomance
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Pdf(
+data class Epub(
     @SerializedName("isAvailable")
     val isAvailable: Boolean,
     @SerializedName("acsTokenLink")

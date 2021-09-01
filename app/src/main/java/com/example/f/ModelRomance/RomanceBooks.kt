@@ -1,9 +1,9 @@
-package com.example.f.Model
+package com.example.f.ModelRomance
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Books(
+data class RomanceBooks(
     @SerializedName("kind")
     val kind: String,
     @SerializedName("totalItems")
