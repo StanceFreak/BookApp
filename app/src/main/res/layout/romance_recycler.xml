@@ -2,109 +2,57 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginEnd="10dp"
-    android:id="@+id/rv_body">
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="4dp"
+    android:orientation="vertical"
+    android:layout_width="167dp"
+    android:layout_height="250dp"
+    android:layout_marginBottom="10dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="180dp"
-        app:cardCornerRadius="5dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="15dp">
+        <ImageView
+            android:id="@+id/popular_thumbnail"
+            android:layout_width="167dp"
+            android:layout_height="250dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_book_icon"
+            android:background="@drawable/image_corner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:id="@+id/popular_thumbnail"
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_book_icon"/>
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/image_shadow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp">
+        <TextView
+            android:id="@+id/popular_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="55dp"
+            android:textAlignment="viewStart"
+            android:ellipsize="end"
+            android:fontFamily="@font/epilogue_semibold_600"
+            android:singleLine="true"
+            android:text="@string/book_title"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/popular_thumbnail"/>
 
-                <TextView
-                    android:id="@+id/popular_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/book_title"
-                    android:fontFamily="@font/epilogue_semibold_600"
-                    android:textColor="@color/grey"
-                    android:textSize="15sp"/>
-
-                <TextView
-                    android:id="@+id/popular_author"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/book_author"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/epilogue_regular_400"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp">
-
-                    <RatingBar
-                        android:id="@+id/popular_rating_bar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="2dp"
-                        android:layout_gravity="center"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:numStars="5"
-                        android:stepSize="1"
-                        android:progressTint="@color/grey"/>
-
-                    <TextView
-                        android:id="@+id/popular_rate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="2dp"
-                        android:text="@string/book_rate"
-                        android:fontFamily="@font/epilogue_regular_400"
-                        android:textSize="13sp"/>
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/popular_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="@string/book_desc"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/epilogue_regular_400"/>
-
-                <TextView
-                    android:id="@+id/popular_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/book_price"
-                    android:fontFamily="@font/epilogue_semibold_600"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:layout_gravity="bottom"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

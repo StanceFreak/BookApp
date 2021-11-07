@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ItemDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/detail_thumbnail"
+                android:layout_width="125dp"
+                android:layout_height="175dp"
+                android:src="@drawable/ic_book_icon"
+                android:background="@drawable/image_corner"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_title"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/epilogue_semibold_600"
+                    android:textSize="17sp"
+                    android:maxLines="4"
+                    android:lineSpacingExtra="5dp"/>
+
+                <TextView
+                    android:id="@+id/detail_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/book_author"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/epilogue_regular_400"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:id="@+id/detail_average_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:numStars="5"
+                        android:stepSize="1"
+                        android:progressTint="@color/grey"/>
+
+                    <TextView
+                        android:id="@+id/detail_rating_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rating_count"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/epilogue_regular_400"
+                        android:layout_marginStart="5dp"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/book_page"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/epilogue_regular_400"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/detail_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/book_price"
+                    android:textColor="@color/black"
+                    android:gravity="end"
+                    android:textAlignment="gravity"
+                    android:fontFamily="@font/epilogue_semibold_600"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/test"
+                    android:layout_gravity="center"
+                    tools:ignore="ContentDescription"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:text="@string/add_bookmark"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/epilogue_regular_400"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/detail_webview"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="end">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/web_preview"
+                    android:layout_gravity="center"
+                    tools:ignore="ContentDescription"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:text="@string/book_webview"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/epilogue_regular_400"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/detail_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/user_desc"
+            android:textColor="@color/black"
+            android:fontFamily="@font/epilogue_regular_400"
+            android:textSize="15sp"
+            android:lineSpacingExtra="5dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

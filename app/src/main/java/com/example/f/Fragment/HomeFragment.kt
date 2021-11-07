@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Adapter.HomeAdapter
@@ -21,6 +22,7 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
 
     private lateinit var homeAdapter: HomeAdapter
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +40,7 @@ class HomeFragment : Fragment() {
         homeAdapter = HomeAdapter()
 
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = GridLayoutManager(requireActivity(), 2)
             adapter = homeAdapter
             setHasFixedSize(true)
         }
@@ -46,9 +48,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun getDataApi() {
-        val call: Call<RomanceBooks> = BookClient.instance.getRomanceBooks()
+        val callRomance: Call<RomanceBooks> = BookClient.instance.getRomanceBooks()
 
-        call.enqueue(object : Callback<RomanceBooks> {
+
+        callRomance.enqueue(object : Callback<RomanceBooks> {
             override fun onResponse(call: Call<RomanceBooks>, response: Response<RomanceBooks>) {
 
                 if (response.isSuccessful) {
