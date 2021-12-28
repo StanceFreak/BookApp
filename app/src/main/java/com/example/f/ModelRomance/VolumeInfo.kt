@@ -1,51 +1,54 @@
 package com.example.f.ModelRomance
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class VolumeInfo(
     @SerializedName("title")
-    val title: String,
+    val title: String?,
     @SerializedName("authors")
-    val authors: List<String>,
+    val authors: List<String>?,
     @SerializedName("publisher")
-    val publisher: String,
+    val publisher: String?,
     @SerializedName("publishedDate")
-    val publishedDate: String,
+    val publishedDate: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("industryIdentifiers")
-    val industryIdentifiers: List<IndustryIdentifier>,
+    val industryIdentifiers: List<IndustryIdentifier>?,
     @SerializedName("readingModes")
-    val readingModes: ReadingModes,
+    val readingModes: ReadingModes?,
     @SerializedName("pageCount")
-    val pageCount: Int,
+    val pageCount: Int?,
     @SerializedName("printType")
-    val printType: String,
+    val printType: String?,
     @SerializedName("categories")
-    val categories: List<String>,
+    val categories: List<String>?,
     @SerializedName("averageRating")
     val averageRating: Float,
     @SerializedName("ratingsCount")
-    val ratingsCount: Int,
+    val ratingsCount: Int?,
     @SerializedName("maturityRating")
-    val maturityRating: String,
+    val maturityRating: String?,
     @SerializedName("allowAnonLogging")
-    val allowAnonLogging: Boolean,
+    val allowAnonLogging: Boolean?,
     @SerializedName("contentVersion")
-    val contentVersion: String,
+    val contentVersion: String?,
     @SerializedName("panelizationSummary")
-    val panelizationSummary: PanelizationSummary,
+    val panelizationSummary: PanelizationSummary?,
     @SerializedName("imageLinks")
-    val imageLinks: ImageLinks,
+    val imageLinks: ImageLinks?,
     @SerializedName("language")
-    val language: String,
+    val language: String?,
     @SerializedName("previewLink")
-    val previewLink: String,
+    val previewLink: String?,
     @SerializedName("infoLink")
-    val infoLink: String,
+    val infoLink: String?,
     @SerializedName("canonicalVolumeLink")
-    val canonicalVolumeLink: String,
+    val canonicalVolumeLink: String?,
     @SerializedName("subtitle")
-    val subtitle: String
-)
+    val subtitle: String?
+) : Parcelable

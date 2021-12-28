@@ -15,9 +15,10 @@
         android:theme="@style/Theme.F">
 
         <activity android:name=".Activity.ItemDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label=""/>
         <activity android:name=".Activity.NavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.SignInActivity"
             android:label=""/>
         <activity android:name=".Activity.SignUpActivity"

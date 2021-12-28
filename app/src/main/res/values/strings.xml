@@ -16,12 +16,13 @@
     <string name="user_name">User</string>
     <string name="user_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</string>
     <string name="profile_edit">Manage your profile</string>
-    <string name="profile_education">Education</string>
-    <string name="profile_email">Email</string>
+    <string name="user_profile">My Profile</string>
+    <string name="faqs_profile">FAQs</string>
     <string name="rating_count">0</string>
     <string name="book_published">published_date</string>
     <string name="average_rating">0</string>
     <string name="book_page">0 pages</string>
     <string name="add_bookmark">Add to bookmark</string>
     <string name="book_webview">WebView</string>
+    <string name="search_icon">Looking for something?</string>
 </resources>

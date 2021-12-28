@@ -125,13 +125,15 @@
             android:layout_height="wrap_content"
             android:text="Already have an account? "
             android:textColor="@color/white"
-            android:fontFamily="@font/epilogue_semibold_600"/>
+            android:textSize="16sp"
+            android:fontFamily="@font/epilogue_regular_400"/>
 
         <TextView
             android:id="@+id/tv_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signin"
+            android:textSize="16sp"
             android:textColor="@color/white"
             android:fontFamily="@font/epilogue_semibold_600"/>
 

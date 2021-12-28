@@ -1,21 +1,24 @@
 package com.example.f.ModelRomance
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Item(
     @SerializedName("kind")
-    val kind: String,
+    val kind: String?,
     @SerializedName("id")
-    val id: String,
+    val id: String?,
     @SerializedName("etag")
-    val etag: String,
+    val etag: String?,
     @SerializedName("selfLink")
-    val selfLink: String,
+    val selfLink: String?,
     @SerializedName("volumeInfo")
-    val volumeInfo: VolumeInfo,
+    val volumeInfo: VolumeInfo?,
     @SerializedName("saleInfo")
-    val saleInfo: SaleInfo,
+    val saleInfo: SaleInfo?,
     @SerializedName("accessInfo")
-    val accessInfo: AccessInfo
-)
+    val accessInfo: AccessInfo?
+) : Parcelable

@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.f.ModelFantasy.Item
+import androidx.appcompat.widget.Toolbar
 import com.example.f.R
 import com.squareup.picasso.Picasso
 
@@ -22,7 +22,18 @@ class ItemDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_item_activity)
 
-        val bookExtras = intent.getParcelableExtra<Item>(BOOK_DETAIL)
+        val toolbar = findViewById<Toolbar>(R.id.detail_toolbar)
+        toolbar.apply {
+            setNavigationIcon(R.drawable.ic_back)
+        }
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
+        val bookExtras = intent.getParcelableExtra<com.example.f.ModelRomance.Item>(BOOK_DETAIL)
 
         val thumbnail = findViewById<ImageView>(R.id.detail_thumbnail)
         val title = findViewById<TextView>(R.id.detail_title)
@@ -31,15 +42,17 @@ class ItemDetailActivity : AppCompatActivity() {
         val ratingCount = findViewById<TextView>(R.id.detail_rating_count)
         val description = findViewById<TextView>(R.id.detail_desc)
         val webview = findViewById<LinearLayout>(R.id.detail_webview)
+        val page = findViewById<TextView>(R.id.detail_pages)
 
         if (bookExtras != null) {
-            title.text = bookExtras.volumeInfo.title
-            author.text = bookExtras.volumeInfo.authors.toString()
-            rating.rating = bookExtras.volumeInfo.averageRating
+            title.text = bookExtras.volumeInfo?.title
+            author.text = bookExtras.volumeInfo?.authors.toString()
+            rating.rating = bookExtras.volumeInfo!!.averageRating
             ratingCount.text = bookExtras.volumeInfo.averageRating.toString()
             description.text = bookExtras.volumeInfo.description
+            page.text = bookExtras.volumeInfo.pageCount.toString()
             Picasso.get()
-                .load(bookExtras.volumeInfo.imageLinks.thumbnail)
+                .load(bookExtras.volumeInfo.imageLinks?.thumbnail)
                 .error(R.drawable.ic_no_thumbnail)
                 .fit()
                 .into(thumbnail)

@@ -1,27 +1,30 @@
 package com.example.f.ModelRomance
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class AccessInfo(
     @SerializedName("country")
-    val country: String,
+    val country: String?,
     @SerializedName("viewability")
-    val viewability: String,
+    val viewability: String?,
     @SerializedName("embeddable")
-    val embeddable: Boolean,
+    val embeddable: Boolean?,
     @SerializedName("publicDomain")
-    val publicDomain: Boolean,
+    val publicDomain: Boolean?,
     @SerializedName("textToSpeechPermission")
-    val textToSpeechPermission: String,
+    val textToSpeechPermission: String?,
     @SerializedName("epub")
-    val epub: Epub,
+    val epub: Epub?,
     @SerializedName("pdf")
-    val pdf: Pdf,
+    val pdf: Pdf?,
     @SerializedName("webReaderLink")
-    val webReaderLink: String,
+    val webReaderLink: String?,
     @SerializedName("accessViewStatus")
-    val accessViewStatus: String,
+    val accessViewStatus: String?,
     @SerializedName("quoteSharingAllowed")
-    val quoteSharingAllowed: Boolean
-)
+    val quoteSharingAllowed: Boolean?
+):Parcelable

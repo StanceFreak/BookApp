@@ -1,11 +1,14 @@
 package com.example.f.ModelRomance
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PanelizationSummary(
     @SerializedName("containsEpubBubbles")
-    val containsEpubBubbles: Boolean,
+    val containsEpubBubbles: Boolean?,
     @SerializedName("containsImageBubbles")
-    val containsImageBubbles: Boolean
-)
+    val containsImageBubbles: Boolean?
+) : Parcelable

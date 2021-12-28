@@ -1,13 +1,16 @@
 package com.example.f.ModelRomance
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class SaleInfo(
     @SerializedName("country")
-    val country: String,
+    val country: String?,
     @SerializedName("saleability")
-    val saleability: String,
+    val saleability: String?,
     @SerializedName("isEbook")
-    val isEbook: Boolean
-)
+    val isEbook: Boolean?
+) : Parcelable
