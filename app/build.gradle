@@ -9,8 +9,8 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
     }
 
     defaultConfig {
@@ -57,6 +57,12 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     kapt "com.android.databinding:compiler:3.1.0"
     kaptAndroidTest 'androidx.databinding:databinding-compiler:3.3.2'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation 'androidx.lifecycle:lifecycle-common:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
+    implementation 'android.arch.lifecycle:extensions:2.2.0'
+
 
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment:2.3.5"
@@ -83,5 +89,5 @@ dependencies {
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 }

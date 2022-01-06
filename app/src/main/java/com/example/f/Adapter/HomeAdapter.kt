@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.ItemDetailActivity
 import com.example.f.ModelRomance.Item
 import com.example.f.R
+import com.example.f.databinding.RomanceRecyclerBinding
 import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.log
 
 class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(), Filterable {
 
@@ -21,43 +23,51 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(), Filterabl
     private var data = ArrayList<Item> ()
 
 
-    inner class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var image: ImageView
-        var title: TextView
+    inner class HomeViewHolder(private val binding: RomanceRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Item) {
+            if (item.volumeInfo?.imageLinks != null) {
+                Picasso.get()
+                    .load(item.volumeInfo.imageLinks.thumbnail)
+                    .error(R.drawable.ic_no_thumbnail)
+                    .fit()
+                    .into(binding.popularThumbnail)
+            }
 
-        init {
-            image = view.findViewById(R.id.popular_thumbnail)
-            title = view.findViewById(R.id.popular_title)
-
-            image.clipToOutline = true
+            binding.popularTitle.text = item.volumeInfo?.title
+            binding.popularThumbnail.clipToOutline = true
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        return HomeViewHolder(LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.romance_recycler, parent, false))
+        val itemBinding = RomanceRecyclerBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false)
+        return HomeViewHolder(itemBinding)
 
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        val data = filteredData.get(position)
-        holder.title.text = data.volumeInfo?.title
-
-        @Suppress("ConstantConditionIf")
-        if(data.volumeInfo?.imageLinks != null) {
-            Picasso.get()
-                .load(data.volumeInfo.imageLinks.thumbnail)
-                .error(R.drawable.ic_no_thumbnail)
-                .fit()
-                .into(holder.image)
-        }
+        val data = filteredData[position]
+        holder.bind(data)
 
         holder.itemView.setOnClickListener{
             val i = Intent(holder.itemView.context, ItemDetailActivity::class.java)
             i.putExtra(ItemDetailActivity.BOOK_DETAIL, data)
             holder.itemView.context.startActivity(i)
         }
+    }
+
+    override fun getItemCount(): Int {
+        return filteredData.size
+    }
+
+    fun setData(bookList: List<Item>) {
+        this.data.clear()
+        this.data.addAll(bookList)
+        this.filteredData.clear()
+        this.filteredData.addAll(bookList)
+        notifyDataSetChanged()
     }
 
     override fun getFilter(): Filter {
@@ -72,7 +82,14 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(), Filterabl
                     val tempFilteredData = ArrayList<Item>()
 
                     for (item in data) {
-                        if (item.volumeInfo?.title?.toLowerCase(Locale.ROOT)!!.contains(queryString.toLowerCase(Locale.ROOT))) {
+                        if (item.volumeInfo?.
+                                title?.
+                                toLowerCase(Locale.ROOT)!!.
+                                contains(
+                                        queryString,
+                                        ignoreCase = true
+                                )
+                            ) {
                             tempFilteredData.add(item)
                         }
                     }
@@ -82,24 +99,18 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(), Filterabl
                 val filterResults = FilterResults()
                 filterResults.values = filteredData
                 return filterResults
+
             }
 
             override fun publishResults(charSequence: CharSequence?, filterResults: FilterResults?) {
-                filteredData = filterResults?.values as ArrayList<Item>
+                filteredData = filterResults!!.values as ArrayList<Item>
+                Log.d("publishResults", filteredData.toString())
                 notifyDataSetChanged()
             }
 
         }
     }
 
-    override fun getItemCount(): Int {
-        return filteredData.size
-    }
 
-    fun setData(bookList: ArrayList<Item>) {
-        this.data = bookList
-        filteredData = data
-        notifyDataSetChanged()
-    }
 
 }

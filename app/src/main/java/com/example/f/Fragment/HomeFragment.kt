@@ -5,59 +5,43 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Adapter.HomeAdapter
 import com.example.f.Api.BookClient
-import com.example.f.ModelRomance.Item
-import com.example.f.ModelRomance.RomanceBooks
+import com.example.f.Api.BookHelper
+import com.example.f.Factory.HomeViewModelFactory
 import com.example.f.R
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.f.Utils.Status
+import com.example.f.ViewModel.HomeViewModel
+import com.example.f.databinding.FragmentHomeBinding
 
  class HomeFragment : Fragment(){
 
     private lateinit var homeAdapter: HomeAdapter
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar = view.findViewById<Toolbar>(R.id.home_toolbar)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.home_rv_romance)
-        homeAdapter = HomeAdapter()
+        setupRecycler()
+        setupToolbar()
+        setupObserver()
 
-        recyclerView.apply {
-            layoutManager = GridLayoutManager(requireActivity(), 2)
-            adapter = homeAdapter
-            setHasFixedSize(true)
-        }
-
-        toolbar.inflateMenu(R.menu.menu_home)
-        toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
-                R.id.tb_search -> Toast.makeText(context,
-                        "Clicked search button",
-                        Toast.LENGTH_SHORT)
-                        .show()
-            }
-            return@setOnMenuItemClickListener true
-        }
-
-
-
-        getDataApi()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -66,51 +50,77 @@ import retrofit2.Response
         val search = menu.findItem(R.id.tb_search)
         val searchView = search?.actionView as SearchView
         searchView.isSubmitButtonEnabled = true
+        searchView.queryHint = "Looking for something?"
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Log.d("textChange", "newText : " + newText)
+                Toast.makeText(context, "Query says $newText", Toast.LENGTH_SHORT).show()
+                Log.d("textChange", "onQueryTextChange $newText")
                 homeAdapter.filter.filter(newText)
-                return false
+                return true
             }
         })
-        super.onCreateOptionsMenu(menu, inflater)
+        return super.onCreateOptionsMenu(menu, inflater)
     }
 
+     private fun setupRecycler() {
+         homeAdapter = HomeAdapter()
 
+         binding.homeRvRomance.apply {
+             layoutManager = GridLayoutManager(requireActivity(), 2)
+             adapter = homeAdapter
+             setHasFixedSize(true)
+         }
 
-     private fun getDataApi() {
-        val callRomance: Call<RomanceBooks> = BookClient.instance.getRomanceBooks(
-                0,
-                40
-        )
+     }
 
+     private fun setupToolbar() {
+         binding.homeToolbar.inflateMenu(R.menu.menu_home)
+         binding.homeToolbar.setOnMenuItemClickListener {
+             when (it.itemId) {
+                 R.id.tb_search -> Toast.makeText(
+                     context,
+                     "Clicked search button",
+                     Toast.LENGTH_SHORT
+                 )
+                     .show()
+             }
+             return@setOnMenuItemClickListener true
+         }
+     }
 
-        callRomance.enqueue(object : Callback<RomanceBooks> {
-            override fun onResponse(call: Call<RomanceBooks>, response: Response<RomanceBooks>) {
+     private fun setupObserver() {
 
-                if (response.isSuccessful) {
-                    Log.d("test", response.body()!!.toString())
-                    homeAdapter.setData(response.body()!!.items as ArrayList<Item>)
+         viewModel = ViewModelProviders.of(
+             this,
+             HomeViewModelFactory(BookHelper(BookClient.instance))
+         ).get(HomeViewModel::class.java)
+
+         viewModel.getRomanceBooks(
+             0,
+             40
+         ).observe(viewLifecycleOwner, {
+            it?.let { resource ->
+                when(resource.status) {
+                    Status.SUCCESS -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.homeRvRomance.visibility = View.VISIBLE
+                        resource.data?.let { response ->
+                            homeAdapter.setData(response.items)
+                        }
+                    }
+                    Status.ERROR -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+                    Status.LOADING -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
                 }
-
             }
-
-            override fun onFailure(call: Call<RomanceBooks>, t: Throwable) {
-                Toast.makeText(requireContext(),
-                        "Check your network connection",
-                        Toast.LENGTH_LONG)
-                        .show()
-                Log.e("error", "OnFailure : " + t.message)
-            }
-
-        })
-    }
-
-
-
-
+         })
+     }
 }
