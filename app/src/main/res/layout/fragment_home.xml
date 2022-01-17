@@ -8,6 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Fragment.HomeFragment"
     android:background="@color/grey"
+    android:fillViewport="true"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -37,8 +38,7 @@
         android:id="@+id/sv_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar_home"
-        android:fillViewport="true">
+        android:layout_below="@+id/appbar_home">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -49,13 +49,13 @@
                 android:id="@+id/home_rv_romance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:paddingRight="5dp"
-                android:paddingLeft="5dp"
-                android:paddingBottom="10dp"
+                android:layout_centerHorizontal="true"
                 android:orientation="horizontal"
-                tools:listitem="@layout/romance_recycler"
-                tools:itemCount="5"/>
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="10dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/romance_recycler" />
 
         </RelativeLayout>
 
