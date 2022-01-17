@@ -62,7 +62,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-common:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
     implementation 'android.arch.lifecycle:extensions:2.2.0'
-
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation "androidx.room:room-runtime:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5"
+    implementation 'androidx.room:room-ktx:2.2.5'
+    androidTestImplementation "androidx.room:room-testing:2.2.5"
 
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment:2.3.5"

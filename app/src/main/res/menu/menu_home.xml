@@ -4,8 +4,9 @@
 
     <item
         android:title="@string/search_icon"
-        android:id="@+id/tb_search"
+        android:id="@+id/search_home"
         android:icon="@drawable/ic_search_black_24dp"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
 </menu>

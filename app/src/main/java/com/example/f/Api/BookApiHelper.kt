@@ -1,6 +1,6 @@
 package com.example.f.Api
 
-class BookHelper (private val bookApi: BookApi){
+class BookApiHelper (private val bookApi: BookApi){
     suspend fun getRomanceBooks(
         startIndex: Int,
         maxResults : Int

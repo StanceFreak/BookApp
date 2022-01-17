@@ -134,19 +134,22 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                    <ToggleButton
+                        android:id="@+id/toggle_fav"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_bookmark_detail"
-                        tools:ignore="ContentDescription" />
+                        android:textOff=""
+                        android:textOn=""
+                        android:background="@drawable/ic_favorite_outline"/>
 
                     <TextView
+                        android:id="@+id/tv_bookmark_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
-                        android:fontFamily="@font/epilogue_regular_400"
+                        android:fontFamily="@font/epilogue_bold_700"
                         android:text="@string/add_bookmark"
                         android:textColor="@color/white" />
 
@@ -161,8 +164,8 @@
                     android:padding="10dp">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_webview"
                         tools:ignore="ContentDescription" />
@@ -172,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
-                        android:fontFamily="@font/epilogue_regular_400"
+                        android:fontFamily="@font/epilogue_bold_700"
                         android:text="@string/book_webview"
                         android:textColor="@color/white" />
 

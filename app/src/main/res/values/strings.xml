@@ -22,7 +22,7 @@
     <string name="book_published">published_date</string>
     <string name="average_rating">0</string>
     <string name="book_page">0 pages</string>
-    <string name="add_bookmark">Add to bookmark</string>
+    <string name="add_bookmark">Add to favorite</string>
     <string name="book_webview">WebView</string>
     <string name="search_icon">Looking for something?</string>
 </resources>

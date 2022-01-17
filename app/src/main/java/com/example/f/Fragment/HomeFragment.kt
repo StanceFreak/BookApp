@@ -1,29 +1,26 @@
  package com.example.f.Fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Adapter.HomeAdapter
-import com.example.f.Api.BookClient
-import com.example.f.Api.BookHelper
-import com.example.f.Factory.HomeViewModelFactory
+import com.example.f.Api.BookApiClient
+import com.example.f.Api.BookApiHelper
+import com.example.f.Factory.BookViewModelFactory
 import com.example.f.R
 import com.example.f.Utils.Status
-import com.example.f.ViewModel.HomeViewModel
+import com.example.f.ViewModel.BookApiViewModel
 import com.example.f.databinding.FragmentHomeBinding
 
  class HomeFragment : Fragment(){
 
     private lateinit var homeAdapter: HomeAdapter
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var apiViewModel: BookApiViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +44,7 @@ import com.example.f.databinding.FragmentHomeBinding
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_home, menu)
 
-        val search = menu.findItem(R.id.tb_search)
+        val search = menu.findItem(R.id.search_home)
         val searchView = search?.actionView as SearchView
         searchView.isSubmitButtonEnabled = true
         searchView.queryHint = "Looking for something?"
@@ -57,9 +54,9 @@ import com.example.f.databinding.FragmentHomeBinding
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Toast.makeText(context, "Query says $newText", Toast.LENGTH_SHORT).show()
-                Log.d("textChange", "onQueryTextChange $newText")
                 homeAdapter.filter.filter(newText)
+                val e : Exception = Exception()
+                e.printStackTrace()
                 return true
             }
         })
@@ -81,7 +78,7 @@ import com.example.f.databinding.FragmentHomeBinding
          binding.homeToolbar.inflateMenu(R.menu.menu_home)
          binding.homeToolbar.setOnMenuItemClickListener {
              when (it.itemId) {
-                 R.id.tb_search -> Toast.makeText(
+                 R.id.search_home -> Toast.makeText(
                      context,
                      "Clicked search button",
                      Toast.LENGTH_SHORT
@@ -94,12 +91,12 @@ import com.example.f.databinding.FragmentHomeBinding
 
      private fun setupObserver() {
 
-         viewModel = ViewModelProviders.of(
+         apiViewModel = ViewModelProviders.of(
              this,
-             HomeViewModelFactory(BookHelper(BookClient.instance))
-         ).get(HomeViewModel::class.java)
+             BookViewModelFactory(BookApiHelper(BookApiClient.instance))
+         ).get(BookApiViewModel::class.java)
 
-         viewModel.getRomanceBooks(
+         apiViewModel.getRomanceBooks(
              0,
              40
          ).observe(viewLifecycleOwner, {

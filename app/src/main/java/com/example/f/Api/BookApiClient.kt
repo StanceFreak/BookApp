@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
-object BookClient {
+object BookApiClient {
 
     private const val BASE_URL = "https://www.googleapis.com"
 

@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.compose.ui.text.toLowerCase
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.ItemDetailActivity
+import com.example.f.Fragment.HomeFragment
 import com.example.f.ModelRomance.Item
 import com.example.f.R
 import com.example.f.databinding.RomanceRecyclerBinding
