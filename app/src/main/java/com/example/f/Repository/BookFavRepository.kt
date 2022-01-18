@@ -17,8 +17,4 @@ class BookFavRepository(private val bookFavDao: BookFavDao) {
         bookFavDao.deleteFav(id)
     }
 
-//    suspend fun isFavorite(id : Int) {
-//        bookFavDao.isFavorite(id)
-//    }
-
 }

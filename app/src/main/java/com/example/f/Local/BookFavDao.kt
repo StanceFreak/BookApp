@@ -18,7 +18,4 @@ interface BookFavDao {
     @Query("SELECT * FROM favorite_table")
     fun getFavorite() : LiveData<List<BookFavEntity>>
 
-//    @Query("SELECT EXISTS (SELECT 1 FROM favorite_table WHERE id = :id)")
-//    suspend fun isFavorite(id : Int)
-
 }

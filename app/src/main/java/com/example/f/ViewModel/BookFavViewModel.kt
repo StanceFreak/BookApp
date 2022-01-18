@@ -33,10 +33,4 @@ class BookFavViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-//    fun isFavorite(id : Int) {
-//        viewModelScope.launch {
-//            bookFavRepository.isFavorite(id)
-//        }
-//    }
-
 }

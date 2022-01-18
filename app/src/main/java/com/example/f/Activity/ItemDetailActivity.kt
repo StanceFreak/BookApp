@@ -56,6 +56,18 @@ class ItemDetailActivity: AppCompatActivity() {
         val bookExtras = intent.getParcelableExtra<Item>(BOOK_DETAIL)
         viewModel = ViewModelProviders.of(this).get(BookFavViewModel::class.java)
 
+        val sp = getSharedPreferences("button_state", Context.MODE_PRIVATE)
+        val checkState = sp.getBoolean("state" + bookExtras!!.id, false)
+
+        if(checkState) {
+            binding.toggleFav.isChecked = true
+            binding.tvBookmarkDetail.text = "Bookmarked"
+        }
+        else{
+            binding.toggleFav.isChecked = false
+            binding.tvBookmarkDetail.text = "Add to favorite"
+        }
+
         if (bookExtras != null) {
 
             binding.apply {
@@ -76,9 +88,7 @@ class ItemDetailActivity: AppCompatActivity() {
                     startActivity(i)
                 }
 
-                binding.toggleFav.setOnCheckedChangeListener {
-                        compoundButton: CompoundButton,
-                        isChecked: Boolean ->
+                binding.toggleFav.setOnClickListener {
 
                     val isBookmark : Boolean
                     val favData = BookFavEntity(
@@ -93,16 +103,18 @@ class ItemDetailActivity: AppCompatActivity() {
                             bookExtras.volumeInfo.imageLinks?.thumbnail
                     )
 
-                    if(isChecked) {
-                        isBookmark = true
-                        viewModel.addFav(favData)
-                        binding.toggleFav.setBackgroundResource(R.drawable.ic_favorite_filled)
+                    if(binding.toggleFav.isChecked) {
+                        binding.toggleFav.isChecked = true
                         binding.tvBookmarkDetail.text = "Bookmarked"
-                        saveState(isBookmark)
-
-
+                        isBookmark = true
+                        val editor = sp.edit()
+                        editor.putBoolean("state" + bookExtras.id, isBookmark)
+                        editor.apply()
+                        viewModel.addFav(favData)
                     }
-                    else if (!isChecked) {
+                    else {
+                        binding.toggleFav.isChecked = false
+                        binding.tvBookmarkDetail.text = "Add to favorite"
                         isBookmark = false
                         val e = Exception()
                         e.printStackTrace()
