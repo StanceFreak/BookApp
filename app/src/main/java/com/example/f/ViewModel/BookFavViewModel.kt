@@ -27,7 +27,7 @@ class BookFavViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun deleteFav(id: Int) {
+    fun deleteFav(id: String) {
         viewModelScope.launch {
             bookFavRepository.deleteFav(id)
         }

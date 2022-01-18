@@ -116,39 +116,13 @@ class ItemDetailActivity: AppCompatActivity() {
                         binding.toggleFav.isChecked = false
                         binding.tvBookmarkDetail.text = "Add to favorite"
                         isBookmark = false
-                        val e = Exception()
-                        e.printStackTrace()
-                        viewModel.deleteFav(favData.id)
-                        binding.toggleFav.setBackgroundResource(R.drawable.ic_favorite_outline)
-                        binding.tvBookmarkDetail.text = "Add to favorite"
-                        saveState(isBookmark)
+                        val editor = sp.edit()
+                        editor.putBoolean("state" + bookExtras.id, isBookmark)
+                        editor.apply()
+                        viewModel.deleteFav(favData.bookId)
                     }
                 }
             }
         }
-        val sp = getSharedPreferences("button_state", Context.MODE_PRIVATE)
-        val checkState = sp.getBoolean("state" + bookExtras!!.id, false)
-
-        if(checkState) {
-            binding.toggleFav.setBackgroundResource(R.drawable.ic_favorite_filled)
-            binding.tvBookmarkDetail.text = "Bookmarked"
-        }
-        else if (!checkState){
-
-            binding.toggleFav.setBackgroundResource(R.drawable.ic_favorite_outline)
-            binding.tvBookmarkDetail.text = "Add to favorite"
-        }
     }
-
-    private fun saveState(isBookmark: Boolean) {
-        val bookExtras = intent.getParcelableExtra<Item>(BOOK_DETAIL)
-        val sp = getSharedPreferences("button_state", Context.MODE_PRIVATE)
-        val editor = sp.edit()
-        editor.putBoolean("state" + bookExtras!!.id, isBookmark)
-        editor.apply()
-    }
-
-//    private fun checkState() {
-//        sp.getBoolean("state", true)
-//    }
 }

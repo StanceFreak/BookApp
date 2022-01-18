@@ -13,7 +13,7 @@ class BookFavRepository(private val bookFavDao: BookFavDao) {
         bookFavDao.addFav(bookFavEntity)
     }
 
-    suspend fun deleteFav(id: Int) {
+    suspend fun deleteFav(id: String) {
         bookFavDao.deleteFav(id)
     }
 

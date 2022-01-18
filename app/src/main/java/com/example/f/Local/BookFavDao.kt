@@ -1,19 +1,16 @@
 package com.example.f.Local
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface BookFavDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addFav (bookFavEntity: BookFavEntity)
 
-    @Query("DELETE FROM favorite_table where id = :id")
-    suspend fun deleteFav (id: Int)
+    @Query("DELETE FROM favorite_table WHERE favorite_table.bookId = :id")
+    suspend fun deleteFav (id: String): Int
 
     @Query("SELECT * FROM favorite_table")
     fun getFavorite() : LiveData<List<BookFavEntity>>
