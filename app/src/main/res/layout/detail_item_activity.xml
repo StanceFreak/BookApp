@@ -141,7 +141,7 @@
                         android:layout_gravity="center"
                         android:textOff=""
                         android:textOn=""
-                        android:background="@drawable/ic_favorite_outline"/>
+                        android:background="@drawable/toggle_button"/>
 
                     <TextView
                         android:id="@+id/tv_bookmark_detail"
