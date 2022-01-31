@@ -1,8 +1,8 @@
 package com.example.f.Repository
 
 import androidx.lifecycle.LiveData
-import com.example.f.Local.BookFavDao
-import com.example.f.Local.BookFavEntity
+import com.example.f.Model.Local.BookFavDao
+import com.example.f.Model.Local.BookFavEntity
 
 
 class BookFavRepository(private val bookFavDao: BookFavDao) {

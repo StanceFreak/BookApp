@@ -9,5 +9,8 @@ class BookApiRepository(private val bookApiHelper: BookApiHelper) {
         maxResults : Int
     ) = bookApiHelper.getRomanceBooks(startIndex, maxResults)
 
-
+    suspend fun getAdventureBooks(
+            startIndex : Int,
+            maxResults : Int
+    ) = bookApiHelper.getAdventureBooks(startIndex, maxResults)
 }

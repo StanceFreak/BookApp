@@ -2,18 +2,12 @@ package com.example.f.Activity
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProviders
-import com.example.f.Local.BookFavDatabase
-import com.example.f.Local.BookFavEntity
-import com.example.f.ModelRomance.Item
-import com.example.f.ModelRomance.RomanceBooks
+import com.example.f.Model.Local.BookFavEntity
+import com.example.f.Model.ItemDetail
 import com.example.f.R
 import com.example.f.ViewModel.BookFavViewModel
 import com.example.f.databinding.DetailItemActivityBinding
@@ -52,8 +46,8 @@ class ItemDetailActivity: AppCompatActivity() {
     }
 
     private fun setData() {
-
-        val bookExtras = intent.getParcelableExtra<Item>(BOOK_DETAIL)
+        val bookExtras = intent.getParcelableExtra<ItemDetail>(BOOK_DETAIL)
+//        val bookExtras = intent.getParcelableExtra<Item>(BOOK_DETAIL)
         viewModel = ViewModelProviders.of(this).get(BookFavViewModel::class.java)
 
         val sp = getSharedPreferences("button_state", Context.MODE_PRIVATE)
@@ -72,19 +66,20 @@ class ItemDetailActivity: AppCompatActivity() {
 
             binding.apply {
                 Picasso.get()
-                        .load(bookExtras.volumeInfo?.imageLinks?.thumbnail)
+                        .load(bookExtras.thumbnail)
                         .error(R.drawable.ic_no_thumbnail)
                         .placeholder(R.drawable.ic_no_thumbnail)
                         .fit()
                         .into(binding.detailThumbnail)
-                detailTitle.text = bookExtras.volumeInfo?.title
-                detailAuthor.text = bookExtras.volumeInfo?.authors.toString()
-                detailAverageRating.rating = bookExtras.volumeInfo!!.averageRating
-                detailRatingCount.text = bookExtras.volumeInfo.ratingsCount.toString()
-                detailDesc.text = bookExtras.volumeInfo.description
-                detailPages.text = "${bookExtras.volumeInfo.pageCount} pages"
+                detailTitle.text = bookExtras.title
+                detailAuthor.text = bookExtras.authors.toString()
+                detailAverageRating.rating = bookExtras.averageRating!!
+                detailRatingCount.text = bookExtras.ratingsCount.toString()
+                detailDesc.text = bookExtras.description
+                detailPages.text = "${bookExtras.pageCount} pages"
                 binding.detailWebview.setOnClickListener {
-                    val i = Intent(Intent.ACTION_VIEW, Uri.parse(bookExtras.volumeInfo.previewLink))
+//                    val i = Intent(Intent.ACTION_VIEW, Uri.parse(bookExtras.volumeInfo.previewLink))
+                    val i = Intent(Intent.ACTION_VIEW, Uri.parse(bookExtras.previewLink))
                     startActivity(i)
                 }
 
@@ -92,15 +87,16 @@ class ItemDetailActivity: AppCompatActivity() {
 
                     val isBookmark : Boolean
                     val favData = BookFavEntity(
-                        0,
+                            0,
                             bookExtras.id!!,
-                            bookExtras.volumeInfo.title,
-                            bookExtras.volumeInfo.authors.toString(),
-                            bookExtras.volumeInfo.averageRating,
-                            bookExtras.volumeInfo.ratingsCount,
-                            bookExtras.volumeInfo.description.toString(),
-                            bookExtras.volumeInfo.pageCount,
-                            bookExtras.volumeInfo.imageLinks?.thumbnail
+                            bookExtras.title,
+                            bookExtras.authors.toString(),
+                            bookExtras.averageRating,
+                            bookExtras.ratingsCount,
+                            bookExtras.description.toString(),
+                            bookExtras.pageCount,
+                            bookExtras.thumbnail,
+                            bookExtras.previewLink
                     )
 
                     if(binding.toggleFav.isChecked) {

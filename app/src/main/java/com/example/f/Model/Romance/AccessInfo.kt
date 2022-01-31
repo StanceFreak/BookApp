@@ -1,4 +1,4 @@
-package com.example.f.ModelRomance
+package com.example.f.Model.Romance
 
 
 import android.os.Parcelable
@@ -7,24 +7,24 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AccessInfo(
-    @SerializedName("country")
+        @SerializedName("country")
     val country: String?,
-    @SerializedName("viewability")
+        @SerializedName("viewability")
     val viewability: String?,
-    @SerializedName("embeddable")
+        @SerializedName("embeddable")
     val embeddable: Boolean?,
-    @SerializedName("publicDomain")
+        @SerializedName("publicDomain")
     val publicDomain: Boolean?,
-    @SerializedName("textToSpeechPermission")
+        @SerializedName("textToSpeechPermission")
     val textToSpeechPermission: String?,
-    @SerializedName("epub")
+        @SerializedName("epub")
     val epub: Epub?,
-    @SerializedName("pdf")
+        @SerializedName("pdf")
     val pdf: Pdf?,
-    @SerializedName("webReaderLink")
+        @SerializedName("webReaderLink")
     val webReaderLink: String?,
-    @SerializedName("accessViewStatus")
+        @SerializedName("accessViewStatus")
     val accessViewStatus: String?,
-    @SerializedName("quoteSharingAllowed")
+        @SerializedName("quoteSharingAllowed")
     val quoteSharingAllowed: Boolean?
 ):Parcelable

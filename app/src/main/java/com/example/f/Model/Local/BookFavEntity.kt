@@ -1,11 +1,10 @@
-package com.example.f.Local
+package com.example.f.Model.Local
 
 import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.f.ModelRomance.Item
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -25,18 +24,21 @@ data class BookFavEntity(
     val author: String,
 
     @ColumnInfo(name = "averageRating")
-    val averageRating: Float,
+    val averageRating: Float?,
 
     @ColumnInfo(name = "ratingCount")
     val ratingCount: Int?,
 
     @ColumnInfo(name = "desc")
-    val desc: String,
+    val desc: String?,
 
     @ColumnInfo(name = "pageCount")
     val pageCount: Int?,
 
     @ColumnInfo(name = "thumbnail")
-    val thumbnail: String?
+    val thumbnail: String?,
+
+    @ColumnInfo(name = "previewLink")
+    val previewLink: String?
 
 ): Parcelable

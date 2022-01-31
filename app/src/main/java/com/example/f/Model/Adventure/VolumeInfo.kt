@@ -1,9 +1,9 @@
-package com.example.f.ModelRomance
+package com.example.f.Model.Adventure
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import android.os.Parcelable
 
 @Parcelize
 data class VolumeInfo(
@@ -28,7 +28,7 @@ data class VolumeInfo(
     @SerializedName("categories")
     val categories: List<String>?,
     @SerializedName("averageRating")
-    val averageRating: Float,
+    val averageRating: Float?,
     @SerializedName("ratingsCount")
     val ratingsCount: Int?,
     @SerializedName("maturityRating")
@@ -48,7 +48,5 @@ data class VolumeInfo(
     @SerializedName("infoLink")
     val infoLink: String?,
     @SerializedName("canonicalVolumeLink")
-    val canonicalVolumeLink: String?,
-    @SerializedName("subtitle")
-    val subtitle: String?
+    val canonicalVolumeLink: String?
 ) : Parcelable

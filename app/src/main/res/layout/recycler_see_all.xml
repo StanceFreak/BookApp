@@ -11,7 +11,7 @@
     android:layout_height="290dp">
 
     <ImageView
-        android:id="@+id/popular_thumbnail"
+        android:id="@+id/thumbnail"
         android:layout_width="180dp"
         android:layout_height="250dp"
         android:adjustViewBounds="true"
@@ -30,7 +30,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/popular_title"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ellipsize="end"

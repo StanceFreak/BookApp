@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.f">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,19 +11,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.F">
-
-        <activity android:name=".Activity.ItemDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label=""/>
-        <activity android:name=".Activity.NavigationActivity"
+        android:theme="@style/Theme.F"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.SeeAllActivity"></activity>
+        <activity
+            android:name=".Activity.ItemDetailActivity"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.SignInActivity"
-            android:label=""/>
-        <activity android:name=".Activity.SignUpActivity"
-            android:label=""/>
-        <activity android:name=".Activity.LandingActivity"
+        <activity
+            android:name=".Activity.NavigationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.SignInActivity"
+            android:label="" />
+        <activity
+            android:name=".Activity.SignUpActivity"
+            android:label="" />
+        <activity
+            android:name=".Activity.LandingActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.f.Local
+package com.example.f.Model.Local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

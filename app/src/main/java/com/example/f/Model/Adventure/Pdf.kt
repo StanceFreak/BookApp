@@ -1,12 +1,14 @@
-package com.example.f.ModelRomance
+package com.example.f.Model.Adventure
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import android.os.Parcelable
 
 @Parcelize
 data class Pdf(
     @SerializedName("isAvailable")
-    val isAvailable: Boolean?
+    val isAvailable: Boolean?,
+    @SerializedName("acsTokenLink")
+    val acsTokenLink: String?
 ) : Parcelable

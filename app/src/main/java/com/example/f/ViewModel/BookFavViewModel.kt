@@ -3,10 +3,9 @@ package com.example.f.ViewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.f.Local.BookFavDatabase
-import com.example.f.Local.BookFavEntity
+import com.example.f.Model.Local.BookFavDatabase
+import com.example.f.Model.Local.BookFavEntity
 import com.example.f.Repository.BookFavRepository
 import kotlinx.coroutines.launch
 
