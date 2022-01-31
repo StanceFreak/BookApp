@@ -25,4 +25,9 @@
     <string name="add_bookmark">Add to favorite</string>
     <string name="book_webview">WebView</string>
     <string name="search_icon">Looking for something?</string>
+<!--    <string-array name="group_title">-->
+<!--        <item>Where there is love, there is life</item>-->
+<!--        <item>The journey, is the destination</item>-->
+<!--        <item>The best things in life are free</item>-->
+<!--    </string-array>-->
 </resources>

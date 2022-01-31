@@ -1,9 +1,12 @@
 package com.example.f.Adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.f.Local.BookFavEntity
+import com.example.f.Activity.ItemDetailActivity
+import com.example.f.Model.Local.BookFavEntity
+import com.example.f.Model.ItemDetail
 import com.example.f.R
 import com.example.f.databinding.FavoriteRecyclerBinding
 import com.squareup.picasso.Picasso
@@ -34,6 +37,22 @@ class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>(
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val data = favList[position]
         holder.bind(data)
+        holder.itemView.setOnClickListener {
+            val i = Intent(holder.itemView.context, ItemDetailActivity::class.java)
+            val itemDetail = ItemDetail(
+                    data.bookId,
+                    data.thumbnail,
+                    data.title,
+                    data.author.toString(),
+                    data.averageRating,
+                    data.ratingCount,
+                    data.desc.toString(),
+                    data.pageCount,
+                    data.previewLink
+            )
+            i.putExtra(ItemDetailActivity.BOOK_DETAIL, itemDetail)
+            holder.itemView.context.startActivity(i)
+        }
     }
 
     override fun getItemCount(): Int {
