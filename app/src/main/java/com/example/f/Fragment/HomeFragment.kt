@@ -11,6 +11,7 @@ import com.example.f.Adapter.GroupAdapter
 import com.example.f.Api.BookApiClient
 import com.example.f.Api.BookApiHelper
 import com.example.f.Factory.BookViewModelFactory
+import com.example.f.Model.Model.BooksResponse
 import com.example.f.R
 import com.example.f.Utils.Status
 import com.example.f.ViewModel.BookApiViewModel
@@ -26,7 +27,6 @@ import com.example.f.databinding.FragmentHomeBinding
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         setHasOptionsMenu(true)
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -34,13 +34,7 @@ import com.example.f.databinding.FragmentHomeBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val title = GroupTitle.title
-//        val data = ArrayList<Type>()
-//
-//        for (t in title.indices) {
-//            val groupTitle = Type(title[t])
-//            data.add(groupTitle)
-//        }
+
 
         setupRecycler()
         setupToolbar()
@@ -54,7 +48,6 @@ import com.example.f.databinding.FragmentHomeBinding
         val search = menu.findItem(R.id.search_home)
         val searchView = search?.actionView as SearchView
         searchView.isSubmitButtonEnabled = true
-        searchView.queryHint = "Looking for something?"
 //        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 //            override fun onQueryTextSubmit(query: String?): Boolean {
 //                return false
@@ -77,7 +70,7 @@ import com.example.f.databinding.FragmentHomeBinding
          binding.rvHome.apply {
              layoutManager = LinearLayoutManager(
                      requireActivity(),
-                     LinearLayoutManager.HORIZONTAL,
+                     LinearLayoutManager.VERTICAL,
                      false
              )
              adapter = groupAdapter
@@ -103,13 +96,14 @@ import com.example.f.databinding.FragmentHomeBinding
 
      private fun setupObserver() {
 
+         val BooksData = ArrayList<BooksResponse>()
+
          apiViewModel = ViewModelProviders.of(
                  this,
                  BookViewModelFactory(BookApiHelper(BookApiClient.instance))
          ).get(BookApiViewModel::class.java)
 
-         apiViewModel.apply {
-             getRomanceBooks(
+         apiViewModel.getRomanceBooks(
                      0,
                      40
              ).observe(viewLifecycleOwner, {
@@ -119,7 +113,14 @@ import com.example.f.databinding.FragmentHomeBinding
                              binding.progressBar.visibility = View.GONE
                              binding.rvHome.visibility = View.VISIBLE
                              resource.data?.let { response ->
-                                 groupAdapter.setData(response)
+                                 BooksData.add(BooksResponse(
+                                         GroupAdapter.ROMANCE,
+                                         "Where there is love, there is life",
+                                         response.items
+                                 ))
+                                 groupAdapter.setData(BooksData)
+                                 val e = Exception()
+                                 e.printStackTrace()
                              }
                          }
                          Status.ERROR -> {
@@ -133,7 +134,7 @@ import com.example.f.databinding.FragmentHomeBinding
                  }
              })
 
-             getAdventureBooks(
+             apiViewModel.getAdventureBooks(
                      0,
                      40
              ).observe(viewLifecycleOwner, {
@@ -143,7 +144,14 @@ import com.example.f.databinding.FragmentHomeBinding
                              binding.progressBar.visibility = View.GONE
                              binding.rvHome.visibility = View.VISIBLE
                              resource.data?.let { response ->
-                                 groupAdapter.setData(response)
+                                 BooksData.add(BooksResponse(
+                                         GroupAdapter.ADVENTURE,
+                                         "The journey, is the destination",
+                                         response.items
+                                 ))
+                                 groupAdapter.setData(BooksData)
+                                 val e = Exception()
+                                 e.printStackTrace()
                              }
                          }
                          Status.ERROR -> {
@@ -156,6 +164,6 @@ import com.example.f.databinding.FragmentHomeBinding
                      }
                  }
              })
-         }
+
      }
 }
