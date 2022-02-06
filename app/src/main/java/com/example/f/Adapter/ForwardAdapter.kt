@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f.R
-import com.example.f.Model.Romance.Item
+import com.example.f.Model.Model.Item
 import com.example.f.databinding.RecyclerSeeAllBinding
 import com.squareup.picasso.Picasso
 

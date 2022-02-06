@@ -1,4 +1,4 @@
-package com.example.f.Model.Romance
+package com.example.f.Model.Model
 
 
 import android.os.Parcelable

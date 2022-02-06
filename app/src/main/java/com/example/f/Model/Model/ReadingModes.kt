@@ -1,9 +1,9 @@
-package com.example.f.Model.Adventure
+package com.example.f.Model.Model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import android.os.Parcelable
 
 @Parcelize
 data class ReadingModes(

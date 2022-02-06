@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.ItemDetailActivity
 import com.example.f.Model.ItemDetail
 import com.example.f.R
-import com.example.f.Model.Romance.Item
+import com.example.f.Model.Model.Item
 import com.example.f.databinding.RecyclerItemBooksBinding
 import com.squareup.picasso.Picasso
 import kotlin.collections.ArrayList

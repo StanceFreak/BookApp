@@ -7,14 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.ItemDetailActivity
 import com.example.f.Model.ItemDetail
 import com.example.f.R
-import com.example.f.Model.Romance.Item
+import com.example.f.Model.Model.Item
 import com.example.f.databinding.RecyclerItemBooksBinding
 import com.squareup.picasso.Picasso
 import kotlin.collections.ArrayList
 
 class RomanceAdapter: RecyclerView.Adapter<RomanceAdapter.RomanceViewHolder>() {
 
-//    private var filteredData = ArrayList<Item>()
     private var data = ArrayList<Item> ()
 
     inner class RomanceViewHolder(private val binding: RecyclerItemBooksBinding) : RecyclerView.ViewHolder(binding.root) {

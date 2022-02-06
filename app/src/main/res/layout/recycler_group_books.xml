@@ -1,61 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:background="@color/grey">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/group_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="10dp">
+            android:text="This is the title"
+            android:fontFamily="@font/epilogue_semibold_600"
+            android:textColor="@color/white"
+            android:textSize="19sp"/>
 
-            <RelativeLayout
-                android:id="@+id/group_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_arrow_forward"/>
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="This is the title"
-                    android:fontFamily="@font/epilogue_semibold_600"
-                    android:textColor="@color/white"
-                    android:textSize="19sp"/>
+    </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/ic_arrow_forward"/>
-
-            </RelativeLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_child"
-                android:layout_width="wrap_content"
-                android:layout_height="260dp"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/group_item"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                tools:itemCount="5"
-                tools:listitem="@layout/recycler_item_books"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_child"
+        android:layout_width="wrap_content"
+        android:layout_height="260dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        tools:itemCount="5"
+        tools:listitem="@layout/recycler_item_books"/>
 
 </LinearLayout>

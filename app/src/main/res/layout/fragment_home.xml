@@ -38,7 +38,7 @@
     <ScrollView
         android:id="@+id/sv_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/appbar_home">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -46,9 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/recycler_group_books"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
-            tools:itemCount="2"/>
+            tools:itemCount="5"/>
 
     </ScrollView>
 
