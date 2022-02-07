@@ -16,14 +16,32 @@
         android:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/see_all_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/grey"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:layout_scrollFlags="scroll|enterAlways"/>
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <TextView
+                android:id="@+id/see_all_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="17sp"
+                android:fontFamily="@font/epilogue_bold_700"
+                android:textColor="@color/white"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <ProgressBar
+        android:id="@+id/see_all_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
 
     <ScrollView
         android:layout_below="@id/appbar_forward"
@@ -31,7 +49,7 @@
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_forward"
+            android:id="@+id/see_all_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

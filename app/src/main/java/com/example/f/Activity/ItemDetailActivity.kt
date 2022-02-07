@@ -67,8 +67,8 @@ class ItemDetailActivity: AppCompatActivity() {
             binding.apply {
                 Picasso.get()
                         .load(bookExtras.thumbnail)
-                        .error(R.drawable.ic_no_thumbnail)
-                        .placeholder(R.drawable.ic_no_thumbnail)
+                        .error(R.drawable.ic_book_48)
+                        .placeholder(R.drawable.ic_book_48)
                         .fit()
                         .into(binding.detailThumbnail)
                 detailTitle.text = bookExtras.title

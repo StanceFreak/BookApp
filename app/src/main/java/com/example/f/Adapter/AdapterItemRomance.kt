@@ -12,38 +12,43 @@ import com.example.f.databinding.RecyclerItemBooksBinding
 import com.squareup.picasso.Picasso
 import kotlin.collections.ArrayList
 
-class AdventureAdapter: RecyclerView.Adapter<AdventureAdapter.AdventureViewHolder>() {
+class AdapterItemRomance: RecyclerView.Adapter<AdapterItemRomance.ViewHolder>() {
 
     private var data = ArrayList<Item> ()
 
-    inner class AdventureViewHolder(private val binding: RecyclerItemBooksBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: RecyclerItemBooksBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Item) {
-            Picasso.get()
-                    .load(item.volumeInfo?.imageLinks?.thumbnail)
-                    .placeholder(R.drawable.ic_no_thumbnail)
-                    .error(R.drawable.ic_no_thumbnail)
-                    .fit()
-                    .into(binding.itemThumbnail)
-
+            if(item.volumeInfo?.imageLinks?.thumbnail != null) {
+                Picasso.get()
+                        .load(item.volumeInfo.imageLinks.thumbnail)
+                        .error(R.drawable.ic_book_icon)
+                        .placeholder(R.drawable.ic_no_thumbnail)
+                        .fit()
+                        .into(binding.itemThumbnail)
+            }
+            else {
+                Picasso.get()
+                        .cancelRequest(binding.itemThumbnail)
+                binding.itemThumbnail.setBackgroundResource(R.drawable.ic_book_icon)
+            }
             binding.itemTitle.text = item.volumeInfo?.title
             binding.itemThumbnail.clipToOutline = true
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdventureViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = RecyclerItemBooksBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false)
-        return AdventureViewHolder(itemBinding)
+            LayoutInflater.from(parent.context),
+            parent,
+            false)
+        return ViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: AdventureViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = this.data[position]
         holder.bind(data)
 
         holder.itemView.setOnClickListener{
-            val i = Intent(holder.itemView.context, ItemDetailActivity::class.java)
             val itemDetail = ItemDetail(
                     data.id,
                     data.volumeInfo!!.imageLinks?.thumbnail,
@@ -55,9 +60,12 @@ class AdventureAdapter: RecyclerView.Adapter<AdventureAdapter.AdventureViewHolde
                     data.volumeInfo.pageCount,
                     data.volumeInfo.previewLink
             )
+            val i = Intent(holder.itemView.context, ItemDetailActivity::class.java)
             i.putExtra(ItemDetailActivity.BOOK_DETAIL, itemDetail)
             holder.itemView.context.startActivity(i)
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -69,12 +77,6 @@ class AdventureAdapter: RecyclerView.Adapter<AdventureAdapter.AdventureViewHolde
         this.data.addAll(bookList)
         notifyDataSetChanged()
     }
-
-//    fun setData(bookList: List<ChildData>) {
-//        this.data.clear()
-//        this.data.addAll(bookList)
-//        notifyDataSetChanged()
-//    }
 
 //    override fun getFilter(): Filter {
 //        return object : Filter() {
@@ -93,7 +95,7 @@ class AdventureAdapter: RecyclerView.Adapter<AdventureAdapter.AdventureViewHolde
 //                                        queryString,
 //                                        ignoreCase = true
 //                                )
-//                        ) {
+//                            ) {
 //                            tempFilteredData.add(item)
 //                        }
 //                    }

@@ -12,19 +12,24 @@ import com.example.f.databinding.RecyclerItemBooksBinding
 import com.squareup.picasso.Picasso
 import kotlin.collections.ArrayList
 
-class RomanceAdapter: RecyclerView.Adapter<RomanceAdapter.RomanceViewHolder>() {
+class AdapterItemAdventure: RecyclerView.Adapter<AdapterItemAdventure.ViewHolder>() {
 
     private var data = ArrayList<Item> ()
 
-    inner class RomanceViewHolder(private val binding: RecyclerItemBooksBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: RecyclerItemBooksBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Item) {
-            if (item.volumeInfo != null) {
+            if(item.volumeInfo?.imageLinks?.thumbnail != null) {
                 Picasso.get()
-                    .load(item.volumeInfo.imageLinks?.thumbnail)
-                    .placeholder(R.drawable.ic_no_thumbnail)
-                    .error(R.drawable.ic_no_thumbnail)
-                    .fit()
-                    .into(binding.itemThumbnail)
+                        .load(item.volumeInfo.imageLinks.thumbnail)
+                        .error(R.drawable.ic_book_icon)
+                        .placeholder(R.drawable.ic_no_thumbnail)
+                        .fit()
+                        .into(binding.itemThumbnail)
+            }
+            else {
+                Picasso.get()
+                        .cancelRequest(binding.itemThumbnail)
+                binding.itemThumbnail.setBackgroundResource(R.drawable.ic_book_icon)
             }
 
             binding.itemTitle.text = item.volumeInfo?.title
@@ -32,19 +37,20 @@ class RomanceAdapter: RecyclerView.Adapter<RomanceAdapter.RomanceViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RomanceViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = RecyclerItemBooksBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false)
-        return RomanceViewHolder(itemBinding)
+                LayoutInflater.from(parent.context),
+                parent,
+                false)
+        return ViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: RomanceViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = this.data[position]
         holder.bind(data)
 
         holder.itemView.setOnClickListener{
+            val i = Intent(holder.itemView.context, ItemDetailActivity::class.java)
             val itemDetail = ItemDetail(
                     data.id,
                     data.volumeInfo!!.imageLinks?.thumbnail,
@@ -56,12 +62,9 @@ class RomanceAdapter: RecyclerView.Adapter<RomanceAdapter.RomanceViewHolder>() {
                     data.volumeInfo.pageCount,
                     data.volumeInfo.previewLink
             )
-            val i = Intent(holder.itemView.context, ItemDetailActivity::class.java)
             i.putExtra(ItemDetailActivity.BOOK_DETAIL, itemDetail)
             holder.itemView.context.startActivity(i)
         }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -73,6 +76,12 @@ class RomanceAdapter: RecyclerView.Adapter<RomanceAdapter.RomanceViewHolder>() {
         this.data.addAll(bookList)
         notifyDataSetChanged()
     }
+
+//    fun setData(bookList: List<ChildData>) {
+//        this.data.clear()
+//        this.data.addAll(bookList)
+//        notifyDataSetChanged()
+//    }
 
 //    override fun getFilter(): Filter {
 //        return object : Filter() {
@@ -91,7 +100,7 @@ class RomanceAdapter: RecyclerView.Adapter<RomanceAdapter.RomanceViewHolder>() {
 //                                        queryString,
 //                                        ignoreCase = true
 //                                )
-//                            ) {
+//                        ) {
 //                            tempFilteredData.add(item)
 //                        }
 //                    }

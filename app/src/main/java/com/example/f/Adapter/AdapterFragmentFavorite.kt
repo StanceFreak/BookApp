@@ -7,21 +7,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.ItemDetailActivity
 import com.example.f.Model.Local.BookFavEntity
 import com.example.f.Model.ItemDetail
+import com.example.f.Model.Model.Item
 import com.example.f.R
 import com.example.f.databinding.FavoriteRecyclerBinding
 import com.squareup.picasso.Picasso
 
-class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
+class AdapterFragmentFavorite: RecyclerView.Adapter<AdapterFragmentFavorite.FavoriteViewHolder>() {
 
     private var favList = ArrayList<BookFavEntity>()
 
     class FavoriteViewHolder(private val binding: FavoriteRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(entity: BookFavEntity) {
-            Picasso.get()
-                .load(entity.thumbnail)
-                .error(R.drawable.ic_no_thumbnail)
-                .fit()
-                .into(binding.favoriteThumbnail)
+            if(entity.thumbnail != null) {
+                Picasso.get()
+                        .load(entity.thumbnail)
+                        .error(R.drawable.ic_book_icon)
+                        .placeholder(R.drawable.ic_no_thumbnail)
+                        .fit()
+                        .into(binding.favoriteThumbnail)
+            }
+            else {
+                Picasso.get()
+                        .cancelRequest(binding.favoriteThumbnail)
+                binding.favoriteThumbnail.setBackgroundResource(R.drawable.ic_book_icon)
+            }
             binding.favoriteTitle.text = entity.title
             binding.favoriteThumbnail.clipToOutline = true
         }

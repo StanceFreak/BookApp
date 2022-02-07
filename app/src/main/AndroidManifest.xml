@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.F"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.SeeAllActivity"></activity>
+        <activity
+            android:name=".Activity.SeeAllActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Activity.ItemDetailActivity"
             android:label=""

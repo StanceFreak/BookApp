@@ -10,4 +10,9 @@ class BookApiHelper (private val bookApi: BookApi){
             startIndex: Int,
             maxResults : Int
     ) = bookApi.getAdventureBooks(startIndex, maxResults)
+
+    suspend fun getGeorgeMartinBooks(
+            startIndex: Int,
+            maxResults : Int
+    ) = bookApi.getGeorgeMartinBooks(startIndex, maxResults)
 }

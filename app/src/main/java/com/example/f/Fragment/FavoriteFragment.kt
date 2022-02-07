@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.f.Adapter.FavoriteAdapter
-import com.example.f.R
+import com.example.f.Adapter.AdapterFragmentFavorite
 import com.example.f.ViewModel.BookFavViewModel
 import com.example.f.databinding.FragmentFavoriteBinding
 
@@ -18,7 +16,7 @@ class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
     private lateinit var viewModel: BookFavViewModel
-    private lateinit var favAdapter: FavoriteAdapter
+    private lateinit var favAdapter: AdapterFragmentFavorite
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +31,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun setupRecycler() {
-        favAdapter = FavoriteAdapter()
+        favAdapter = AdapterFragmentFavorite()
 
         binding.rvFavorite.apply {
             layoutManager = GridLayoutManager(requireActivity(), 2)

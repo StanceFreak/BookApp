@@ -7,7 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.f.Adapter.GroupAdapter
+import com.example.f.Adapter.AdapterGroupItem
 import com.example.f.Api.BookApiClient
 import com.example.f.Api.BookApiHelper
 import com.example.f.Factory.BookViewModelFactory
@@ -19,7 +19,7 @@ import com.example.f.databinding.FragmentHomeBinding
 
  class HomeFragment : Fragment(){
 
-    private lateinit var groupAdapter: GroupAdapter
+    private lateinit var groupAdapter: AdapterGroupItem
     private lateinit var binding: FragmentHomeBinding
     private lateinit var apiViewModel: BookApiViewModel
 
@@ -64,9 +64,7 @@ import com.example.f.databinding.FragmentHomeBinding
     }
 
      private fun setupRecycler() {
-
-         groupAdapter = GroupAdapter()
-
+         groupAdapter = AdapterGroupItem()
          binding.rvHome.apply {
              layoutManager = LinearLayoutManager(
                      requireActivity(),
@@ -76,7 +74,6 @@ import com.example.f.databinding.FragmentHomeBinding
              adapter = groupAdapter
              setHasFixedSize(true)
          }
-
      }
 
      private fun setupToolbar() {
@@ -114,8 +111,8 @@ import com.example.f.databinding.FragmentHomeBinding
                              binding.rvHome.visibility = View.VISIBLE
                              resource.data?.let { response ->
                                  BooksData.add(BooksResponse(
-                                         GroupAdapter.ROMANCE,
-                                         "Where there is love, there is life",
+                                         AdapterGroupItem.ROMANCE,
+                                         "Heartwarming love story",
                                          response.items
                                  ))
                                  groupAdapter.setData(BooksData)
@@ -145,8 +142,8 @@ import com.example.f.databinding.FragmentHomeBinding
                              binding.rvHome.visibility = View.VISIBLE
                              resource.data?.let { response ->
                                  BooksData.add(BooksResponse(
-                                         GroupAdapter.ADVENTURE,
-                                         "The journey, is the destination",
+                                         AdapterGroupItem.ADVENTURE,
+                                         "Thrilling & exciting adventures",
                                          response.items
                                  ))
                                  groupAdapter.setData(BooksData)
@@ -164,6 +161,37 @@ import com.example.f.databinding.FragmentHomeBinding
                      }
                  }
              })
+
+         apiViewModel.getGeorgeMartinBooks(
+                 0,
+                 40
+         ).observe(viewLifecycleOwner, {
+             it?.let { resource ->
+                 when (resource.status) {
+                     Status.SUCCESS -> {
+                         binding.progressBar.visibility = View.GONE
+                         binding.rvHome.visibility = View.VISIBLE
+                         resource.data?.let { response ->
+                             BooksData.add(BooksResponse(
+                                     AdapterGroupItem.GEORGE,
+                                     "Written by George R.R. Martin",
+                                     response.items
+                             ))
+                             groupAdapter.setData(BooksData)
+                             val e = Exception()
+                             e.printStackTrace()
+                         }
+                     }
+                     Status.ERROR -> {
+                         binding.progressBar.visibility = View.INVISIBLE
+                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                     }
+                     Status.LOADING -> {
+                         binding.progressBar.visibility = View.VISIBLE
+                     }
+                 }
+             }
+         })
 
      }
 }

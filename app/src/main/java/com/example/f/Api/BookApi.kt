@@ -17,4 +17,10 @@ interface BookApi {
             @Query("startIndex ") startIndex: Int,
             @Query("maxResults") maxResults: Int
     ): BooksResponse
+
+    @GET("/books/v1/volumes?q=inauthor:George%20R.R.%20Martin")
+    suspend fun getGeorgeMartinBooks(
+            @Query("startIndex ") startIndex: Int,
+            @Query("maxResults") maxResults: Int
+    ): BooksResponse
 }
