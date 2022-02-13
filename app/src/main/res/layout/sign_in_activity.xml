@@ -42,6 +42,7 @@
             app:startIconDrawable="@drawable/ic_avatar">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_in_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
@@ -64,6 +65,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_in_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -75,6 +77,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/forgot_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Forgot password?"

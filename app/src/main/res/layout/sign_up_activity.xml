@@ -30,10 +30,12 @@
             android:textSize="24sp"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_username"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            app:errorEnabled="true"
             app:counterTextColor="@color/white"
             app:counterEnabled="true"
             app:counterMaxLength="20"
@@ -43,6 +45,7 @@
             app:startIconDrawable="@drawable/ic_avatar">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_up_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -54,16 +57,19 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            app:errorEnabled="true"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
             app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_up_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/epilogue_semibold_600"
@@ -75,18 +81,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="5dp"
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
+            app:errorEnabled="true"
             app:endIconMode="password_toggle"
             app:startIconDrawable="@drawable/ic_lock"
             app:boxBackgroundColor="@color/white"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_up_password"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,12 +106,39 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_password_2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:boxStrokeColor="@color/black"
+            app:hintEnabled="false"
+            app:errorEnabled="true"
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:boxBackgroundColor="@color/white"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_up_password_2"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/epilogue_semibold_600"
+                android:maxLength="8"
+                android:imeOptions="actionDone"
+                android:hint="Re-enter your password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_create_acc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:padding="10dp"
         android:fontFamily="@font/epilogue_semibold_600"
         android:text="Create an account"
@@ -115,7 +151,7 @@
         android:layout_marginTop="20dp"
         android:text="By signing up, you're agree to our"
         android:textColor="@color/white"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:fontFamily="@font/epilogue_regular_400"
         android:layout_gravity="center"/>
 
@@ -151,7 +187,7 @@
             android:layout_height="wrap_content"
             android:text="Privacy Policy"
             android:textColor="@color/white"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:fontFamily="@font/epilogue_semibold_600"
             android:layout_gravity="center"/>
 

@@ -10,7 +10,6 @@ import com.example.f.Fragment.HomeFragment
 import com.example.f.Fragment.ProfileFragment
 import com.example.f.R
 
-
 class NavigationActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
