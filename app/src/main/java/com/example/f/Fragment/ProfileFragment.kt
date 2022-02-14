@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.f.Activity.LandingActivity
 import com.example.f.Activity.SignInActivity
 import com.example.f.R
 import com.example.f.databinding.FragmentProfileBinding
@@ -28,8 +29,20 @@ class ProfileFragment : Fragment() {
 
         setupUI()
         setupGoogleAuth()
+        setupBtn()
 
         return binding.root
+    }
+
+    private fun setupBtn() {
+        binding.logout.setOnClickListener {
+            googleAuth.signOut().addOnCompleteListener {
+                val i = Intent(requireContext(), SignInActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+                activity?.startActivity(i)
+                activity?.finish()
+            }
+        }
     }
 
     private fun setupUI() {
@@ -52,14 +65,5 @@ class ProfileFragment : Fragment() {
             .build()
 
         googleAuth = GoogleSignIn.getClient(requireContext(), gso)
-        binding.logout.setOnClickListener {
-            googleAuth.signOut().addOnCompleteListener {
-                val i = Intent(requireContext(), SignInActivity::class.java)
-                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(i)
-                activity?.finish()
-            }
-        }
-
     }
 }
