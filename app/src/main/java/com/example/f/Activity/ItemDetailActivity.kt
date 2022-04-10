@@ -10,12 +10,12 @@ import com.example.f.Model.Local.BookFavEntity
 import com.example.f.Model.ItemDetail
 import com.example.f.R
 import com.example.f.ViewModel.BookFavViewModel
-import com.example.f.databinding.DetailItemActivityBinding
+import com.example.f.databinding.ActivityItemDetailBinding
 import com.squareup.picasso.Picasso
 
 class ItemDetailActivity: AppCompatActivity() {
 
-    private lateinit var binding: DetailItemActivityBinding
+    private lateinit var binding: ActivityItemDetailBinding
     private lateinit var viewModel: BookFavViewModel
 
 
@@ -25,7 +25,7 @@ class ItemDetailActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DetailItemActivityBinding.inflate(layoutInflater)
+        binding = ActivityItemDetailBinding.inflate(layoutInflater)
 
         setToolbar()
         setData()
@@ -95,6 +95,7 @@ class ItemDetailActivity: AppCompatActivity() {
                             bookExtras.ratingsCount,
                             bookExtras.description.toString(),
                             bookExtras.pageCount,
+                            bookExtras.amountInMicros,
                             bookExtras.thumbnail,
                             bookExtras.previewLink
                     )

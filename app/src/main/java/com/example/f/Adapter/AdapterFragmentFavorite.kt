@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.ItemDetailActivity
 import com.example.f.Model.Local.BookFavEntity
 import com.example.f.Model.ItemDetail
-import com.example.f.Model.Model.Item
 import com.example.f.R
 import com.example.f.databinding.FavoriteRecyclerBinding
 import com.squareup.picasso.Picasso
@@ -52,10 +51,11 @@ class AdapterFragmentFavorite: RecyclerView.Adapter<AdapterFragmentFavorite.Favo
                     data.bookId,
                     data.thumbnail,
                     data.title,
-                    data.author.toString(),
+                    data.author,
                     data.averageRating,
                     data.ratingCount,
                     data.desc.toString(),
+                    data.amountInMicros,
                     data.pageCount,
                     data.previewLink
             )

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.ItemDetailActivity
 import com.example.f.Model.ItemDetail
 import com.example.f.R
-import com.example.f.Model.Model.Item
+import com.example.f.Model.BookModel.Item
 import com.example.f.databinding.RecyclerItemBooksBinding
 import com.squareup.picasso.Picasso
 import kotlin.collections.ArrayList
@@ -57,6 +57,7 @@ class AdapterItemRomance: RecyclerView.Adapter<AdapterItemRomance.ViewHolder>() 
                     data.volumeInfo.averageRating,
                     data.volumeInfo.ratingsCount,
                     data.volumeInfo.description.toString(),
+                    data.saleInfo?.offers?.retailPrice?.amountInMicros,
                     data.volumeInfo.pageCount,
                     data.volumeInfo.previewLink
             )

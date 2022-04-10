@@ -20,6 +20,8 @@ data class ItemDetail(
     val ratingsCount: Int?,
     @SerializedName("description")
     val description: String?,
+    @SerializedName("amountInMicros")
+    val amountInMicros: Long?,
     @SerializedName("pageCount")
     val pageCount: Int?,
     @SerializedName("previewLink")

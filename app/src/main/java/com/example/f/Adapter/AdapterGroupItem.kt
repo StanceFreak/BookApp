@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.SeeAllActivity
-import com.example.f.Model.Model.BooksResponse
+import com.example.f.Model.BookModel.BooksResponse
 import com.example.f.databinding.RecyclerGroupBooksBinding
+import kotlin.collections.ArrayList
 
 class AdapterGroupItem : RecyclerView.Adapter<AdapterGroupItem.ViewHolder>() {
 
     private var bookList = ArrayList<BooksResponse>()
+    private var filteredBookList = ArrayList<BooksResponse>()
 
     companion object{
         const val ROMANCE = 0
@@ -115,7 +117,48 @@ class AdapterGroupItem : RecyclerView.Adapter<AdapterGroupItem.ViewHolder>() {
     fun setData(listData: List<BooksResponse>) {
         this.bookList.clear()
         this.bookList.addAll(listData)
+        this.filteredBookList.clear()
+        this.filteredBookList.addAll(listData)
         notifyDataSetChanged()
     }
+
+//    override fun getFilter(): Filter {
+//        return object : Filter() {
+//            override fun performFiltering(charSequence: CharSequence?): FilterResults {
+//                val queryString = charSequence.toString()
+//
+//                if (queryString.isEmpty()) {
+//                    filteredBookList = bookList
+//                }
+//                else {
+//                    val tempFilteredData = ArrayList<BooksResponse>()
+//
+//                    for (item in bookList) {
+//                        if (it.toLowerCase(Locale.ROOT)!!
+//                                .contains(
+//                                        queryString,
+//                                        ignoreCase = true
+//                                )
+//                            ) {
+//                            tempFilteredData.add(item)
+//                        }
+//                    }
+//                    filteredData = tempFilteredData
+//                }
+//
+//                val filterResults = FilterResults()
+//                filterResults.values = filteredData
+//                return filterResults
+//
+//            }
+//
+//            override fun publishResults(charSequence: CharSequence?, filterResults: FilterResults?) {
+//                filteredData = filterResults!!.values as ArrayList<Item>
+//                Log.d("publishResults", filteredData.toString())
+//                notifyDataSetChanged()
+//            }
+//
+//        }
+//    }
 
 }

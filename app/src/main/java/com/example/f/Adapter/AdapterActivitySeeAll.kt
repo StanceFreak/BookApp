@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.f.Activity.ItemDetailActivity
 import com.example.f.Model.ItemDetail
 import com.example.f.R
-import com.example.f.Model.Model.Item
+import com.example.f.Model.BookModel.Item
 import com.example.f.databinding.RecyclerSeeAllBinding
 import com.squareup.picasso.Picasso
 
@@ -55,6 +55,7 @@ class AdapterActivitySeeAll : RecyclerView.Adapter<AdapterActivitySeeAll.Forward
                     data.volumeInfo.averageRating,
                     data.volumeInfo.ratingsCount,
                     data.volumeInfo.description.toString(),
+                    data.saleInfo?.offers?.retailPrice?.amountInMicros,
                     data.volumeInfo.pageCount,
                     data.volumeInfo.previewLink
             )

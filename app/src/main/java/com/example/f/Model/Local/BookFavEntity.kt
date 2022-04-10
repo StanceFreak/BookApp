@@ -35,6 +35,9 @@ data class BookFavEntity(
     @ColumnInfo(name = "pageCount")
     val pageCount: Int?,
 
+    @ColumnInfo(name = "amountInMicros")
+    val amountInMicros: Long?,
+
     @ColumnInfo(name = "thumbnail")
     val thumbnail: String?,
 
