@@ -35,10 +35,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:errorEnabled="true"
+            app:helperTextTextColor="@color/white"
             app:counterTextColor="@color/white"
             app:counterEnabled="true"
-            app:counterMaxLength="20"
+            app:counterMaxLength="16"
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
             app:boxBackgroundColor="@color/white"
@@ -48,11 +48,9 @@
                 android:id="@+id/sign_up_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:hint="Username"
                 android:imeOptions="actionNext"
-                android:fontFamily="@font/epilogue_semibold_600"
-                android:maxLength="20" />
+                android:fontFamily="@font/epilogue_semibold_600"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             app:errorEnabled="true"
+            app:helperTextTextColor="@color/white"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
@@ -89,6 +88,7 @@
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
             app:errorEnabled="true"
+            app:helperTextTextColor="@color/white"
             app:endIconMode="password_toggle"
             app:startIconDrawable="@drawable/ic_lock"
             app:boxBackgroundColor="@color/white"
@@ -100,14 +100,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/epilogue_semibold_600"
-                android:maxLength="8"
+                android:maxLength="12"
                 android:imeOptions="actionDone"
                 android:hint="Password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_layout_password_2"
+            android:id="@+id/text_layout_password_conf"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,20 +115,21 @@
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
             app:errorEnabled="true"
+            app:helperTextTextColor="@color/white"
             app:endIconMode="password_toggle"
             app:startIconDrawable="@drawable/ic_lock"
             app:boxBackgroundColor="@color/white"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_password_2"
+                android:id="@+id/sign_up_password_conf"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/epilogue_semibold_600"
-                android:maxLength="8"
+                android:maxLength="12"
                 android:imeOptions="actionDone"
-                android:hint="Re-enter your password"/>
+                android:hint="Confirm your password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

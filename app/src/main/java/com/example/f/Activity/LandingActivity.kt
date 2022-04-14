@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.f.R
-import com.example.f.databinding.LandingActivityBinding
+import com.example.f.databinding.ActivityLandingBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,7 +21,7 @@ import com.google.firebase.ktx.Firebase
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class LandingActivity : AppCompatActivity() {
 
-    private lateinit var binding: LandingActivityBinding
+    private lateinit var binding: ActivityLandingBinding
     private lateinit var googleAuth : GoogleSignInClient
     private lateinit var auth : FirebaseAuth
 //    private val RC = 123
@@ -33,7 +33,7 @@ class LandingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = LandingActivityBinding.inflate(layoutInflater)
+        binding = ActivityLandingBinding.inflate(layoutInflater)
         auth = Firebase.auth
 
         isUserLogin()

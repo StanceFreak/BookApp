@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "370868860715",
+    "firebase_url": "https://booktest-320710-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "booktest-320710",
     "storage_bucket": "booktest-320710.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "370868860715-vfsmogkp15ca57g7idct9vn1pc6usp33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.f",
+            "certificate_hash": "6c37195525492b89059e7504c7ae5e0044212757"
+          }
+        },
         {
           "client_id": "370868860715-9fpplj5fjopfp1nn17tg5oubpa3uahop.apps.googleusercontent.com",
           "client_type": 3

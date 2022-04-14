@@ -10,19 +10,19 @@ import com.example.f.Fragment.BrowseFragment
 import com.example.f.Fragment.HomeFragment
 import com.example.f.Fragment.ProfileFragment
 import com.example.f.R
-import com.example.f.databinding.NavigationActivityBinding
+import com.example.f.databinding.ActivityNavigationBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class NavigationActivity: AppCompatActivity() {
 
-    private lateinit var binding: NavigationActivityBinding
+    private lateinit var binding: ActivityNavigationBinding
     private lateinit var googleAuth: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = NavigationActivityBinding.inflate(layoutInflater)
+        binding = ActivityNavigationBinding.inflate(layoutInflater)
 
         setupBottomNav()
         setupGoogleAuth()
@@ -36,22 +36,22 @@ class NavigationActivity: AppCompatActivity() {
         with(binding.navBottom) {
             show(0)
             add(MeowBottomNavigation.Model(0, R.drawable.ic_home))
-            add(MeowBottomNavigation.Model(1, R.drawable.ic_explore))
-            add(MeowBottomNavigation.Model(2, R.drawable.ic_bookmark))
-            add(MeowBottomNavigation.Model(3, R.drawable.ic_profile))
+//            add(MeowBottomNavigation.Model(1, R.drawable.ic_search_black_24dp))
+            add(MeowBottomNavigation.Model(1, R.drawable.ic_bookmark))
+            add(MeowBottomNavigation.Model(2, R.drawable.ic_profile))
 
             setOnClickMenuListener {
                 when(it.id) {
                     0 -> {
                         replaceFragment(HomeFragment())
                     }
+//                    1 -> {
+//                        replaceFragment(BrowseFragment())
+//                    }
                     1 -> {
-                        replaceFragment(BrowseFragment())
-                    }
-                    2 -> {
                         replaceFragment(FavoriteFragment())
                     }
-                    3 -> {
+                    2 -> {
                         replaceFragment(ProfileFragment())
                     }
                     else -> {

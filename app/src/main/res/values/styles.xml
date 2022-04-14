@@ -14,6 +14,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
+    <style name="ProgressBarWhite">
+        <item name="colorAccent">@color/white</item>
+    </style>
 
 </resources>
