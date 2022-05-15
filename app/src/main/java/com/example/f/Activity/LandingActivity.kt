@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.f.Model.SharedPref
 import com.example.f.R
 import com.example.f.databinding.ActivityLandingBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -13,10 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class LandingActivity : AppCompatActivity() {
@@ -24,7 +22,6 @@ class LandingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLandingBinding
     private lateinit var googleAuth : GoogleSignInClient
     private lateinit var auth : FirebaseAuth
-//    private val RC = 123
 
     companion object{
         private const val TAG = "auth"
@@ -34,20 +31,13 @@ class LandingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLandingBinding.inflate(layoutInflater)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
 
         isUserLogin()
         setupBtn()
         setupGoogleAuth()
 
         setContentView(binding.root)
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        val currentUser = auth.currentUser
-        updateUI(currentUser)
     }
 
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -82,10 +72,6 @@ class LandingActivity : AppCompatActivity() {
                         Log.w(TAG, "signInWithCredential:failure", task.exception)
                     }
                 }
-    }
-
-    private fun updateUI(user: FirebaseUser?) {
-
     }
 
     private fun setupGoogleAuth() {
