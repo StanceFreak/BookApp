@@ -32,31 +32,35 @@
             android:textColor="@color/white"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:helperTextTextColor="@color/white_2"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
             app:startIconDrawable="@drawable/ic_avatar">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_in_username"
+                android:id="@+id/sign_in_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
-                android:inputType="text"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
                 android:fontFamily="@font/epilogue_semibold_600" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:helperTextTextColor="@color/white_2"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeColor="@color/black"
             app:hintEnabled="false"
@@ -71,8 +75,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:imeOptions="actionDone"
-                android:fontFamily="@font/epilogue_semibold_600"
-                android:maxLength="8"/>
+                android:fontFamily="@font/epilogue_semibold_600"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
