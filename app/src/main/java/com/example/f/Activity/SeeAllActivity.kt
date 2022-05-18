@@ -68,10 +68,14 @@ class SeeAllActivity : AppCompatActivity() {
                 BookViewModelFactory(BookApiHelper(BookApiClient.instance))
         ).get(BookApiViewModel::class.java)
 
+        val queryMap = HashMap<String, Any>()
+        queryMap["startIndex"] = 0
+        queryMap["maxResults"] = 40
+
         if (data.equals("Heartwarming love story")) {
-            viewModel.getRomanceBooks(
-                    0,
-                    40
+            viewModel.getBooksByGenre(
+                    "subject:romance",
+                    queryMap
             ).observe(this, {
                 it?.let { resource ->
                     when (resource.status) {
@@ -97,9 +101,9 @@ class SeeAllActivity : AppCompatActivity() {
         }
 
         if (data.equals("Thrilling & exciting adventures")) {
-            viewModel.getAdventureBooks(
-                    0,
-                    40
+            viewModel.getBooksByGenre(
+                    "subject:adventure",
+                    queryMap
             ).observe(this, {
                 it?.let { resource ->
                     when (resource.status) {

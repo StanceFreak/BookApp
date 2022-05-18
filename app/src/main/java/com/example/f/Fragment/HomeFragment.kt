@@ -1,21 +1,30 @@
  package com.example.f.Fragment
 
+import android.app.SearchManager
+import android.content.ComponentName
+import android.content.Context
+import android.content.Context.SEARCH_SERVICE
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.f.Activity.LandingActivity
+import com.example.f.Activity.SearchResultActivty
 import com.example.f.Adapter.AdapterGroupItem
 import com.example.f.Api.BookApiClient
 import com.example.f.Api.BookApiHelper
 import com.example.f.Factory.BookViewModelFactory
-import com.example.f.Model.Model.BooksResponse
+import com.example.f.Model.BookModel.BooksResponse
 import com.example.f.R
 import com.example.f.Utils.Status
 import com.example.f.ViewModel.BookApiViewModel
 import com.example.f.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
  class HomeFragment : Fragment(){
 
@@ -35,31 +44,44 @@ import com.example.f.databinding.FragmentHomeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         setupRecycler()
         setupToolbar()
         setupObserver()
-
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_home, menu)
 
         val search = menu.findItem(R.id.search_home)
+        val searchManager = activity?.getSystemService(SEARCH_SERVICE) as SearchManager
         val searchView = search?.actionView as SearchView
-        searchView.isSubmitButtonEnabled = true
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                romanceAdapter.filter.filter(newText)
+        searchView.apply {
+            queryHint = "Looking for something?"
+            isSubmitButtonEnabled = true
+            setSearchableInfo(searchManager.getSearchableInfo(ComponentName(
+                    requireContext(),
+                    SearchResultActivty::class.java
+            )))
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    if (query != null) {
+                        val i = Intent(activity, SearchResultActivty::class.java)
+                        i.putExtra(SearchResultActivty.QUERY_EXTRAS, query)
+                        startActivity(i)
+                    }
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+//                groupAdapter.getFilter().filter(newText)
 //                val e : Exception = Exception()
 //                e.printStackTrace()
-//                return true
-//            }
-//        })
+                    return false
+                }
+
+            })
+        }
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -95,19 +117,23 @@ import com.example.f.databinding.FragmentHomeBinding
 
          val BooksData = ArrayList<BooksResponse>()
 
+         val queryMap = HashMap<String, Any>()
+         queryMap["startIndex"] = 0
+         queryMap["maxResults"] = 40
+
          apiViewModel = ViewModelProviders.of(
                  this,
                  BookViewModelFactory(BookApiHelper(BookApiClient.instance))
          ).get(BookApiViewModel::class.java)
 
-         apiViewModel.getRomanceBooks(
-                     0,
-                     40
+         apiViewModel.getBooksByGenre(
+                "subject:romance",
+                queryMap
              ).observe(viewLifecycleOwner, {
                  it?.let { resource ->
                      when (resource.status) {
                          Status.SUCCESS -> {
-                             binding.progressBar.visibility = View.GONE
+                             binding.pbHome.visibility = View.GONE
                              binding.rvHome.visibility = View.VISIBLE
                              resource.data?.let { response ->
                                  BooksData.add(BooksResponse(
@@ -121,24 +147,24 @@ import com.example.f.databinding.FragmentHomeBinding
                              }
                          }
                          Status.ERROR -> {
-                             binding.progressBar.visibility = View.INVISIBLE
+                             binding.pbHome.visibility = View.INVISIBLE
                              Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                          }
                          Status.LOADING -> {
-                             binding.progressBar.visibility = View.VISIBLE
+                             binding.pbHome.visibility = View.VISIBLE
                          }
                      }
                  }
              })
 
-             apiViewModel.getAdventureBooks(
-                     0,
-                     40
+             apiViewModel.getBooksByGenre(
+                     "subject:adventure",
+                     queryMap
              ).observe(viewLifecycleOwner, {
                  it?.let { resource ->
                      when (resource.status) {
                          Status.SUCCESS -> {
-                             binding.progressBar.visibility = View.GONE
+                             binding.pbHome.visibility = View.GONE
                              binding.rvHome.visibility = View.VISIBLE
                              resource.data?.let { response ->
                                  BooksData.add(BooksResponse(
@@ -152,11 +178,11 @@ import com.example.f.databinding.FragmentHomeBinding
                              }
                          }
                          Status.ERROR -> {
-                             binding.progressBar.visibility = View.INVISIBLE
+                             binding.pbHome.visibility = View.INVISIBLE
                              Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                          }
                          Status.LOADING -> {
-                             binding.progressBar.visibility = View.VISIBLE
+                             binding.pbHome.visibility = View.VISIBLE
                          }
                      }
                  }
@@ -169,7 +195,7 @@ import com.example.f.databinding.FragmentHomeBinding
              it?.let { resource ->
                  when (resource.status) {
                      Status.SUCCESS -> {
-                         binding.progressBar.visibility = View.GONE
+                         binding.pbHome.visibility = View.GONE
                          binding.rvHome.visibility = View.VISIBLE
                          resource.data?.let { response ->
                              BooksData.add(BooksResponse(
@@ -183,11 +209,11 @@ import com.example.f.databinding.FragmentHomeBinding
                          }
                      }
                      Status.ERROR -> {
-                         binding.progressBar.visibility = View.INVISIBLE
+                         binding.pbHome.visibility = View.INVISIBLE
                          Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                      }
                      Status.LOADING -> {
-                         binding.progressBar.visibility = View.VISIBLE
+                         binding.pbHome.visibility = View.VISIBLE
                      }
                  }
              }
